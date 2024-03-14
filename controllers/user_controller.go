@@ -8,6 +8,14 @@ import (
 	"net/http"
 	"strings"
 )
+// success response
+func sendSuccessResponseUser(w http.ResponseWriter, message string) {
+	var response m.UserResponse
+	response.Status = 200
+	response.Message = message
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
 
 // get all user's data
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
