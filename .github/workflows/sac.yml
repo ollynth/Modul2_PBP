@@ -1,28 +1,99 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
-name: Go
+# name: Go
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v3
+
+#     - name: Set up Go
+#       uses: actions/setup-go@v4
+#       with:
+#         go-version: '1.20'
+
+#     - name: Build
+#       run: go build -v ./...
+
+#     - name: Test
+#       run: go test -v ./...
+
+name: static check
+on: pull_request
 
 jobs:
-
-  build:
+  imports:
+    name: Imports
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Go
-      uses: actions/setup-go@v4
+    - uses: actions/checkout@master
+    - name: check
+      uses: k8s-school/golang-github-actions@v1.1.2
       with:
-        go-version: '1.20'
+        run: imports
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build
-      run: go build -v ./...
+  errcheck:
+    name: Errcheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: check
+      uses: k8s-school/golang-github-actions@v1.1.2
+      with:
+        run: errcheck
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Test
-      run: go test -v ./...
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: check
+      uses: k8s-school/golang-github-actions@v1.1.2
+      with:
+        run: lint
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+  shadow:
+    name: Shadow
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: check
+      uses: k8s-school/golang-github-actions@v1.1.2
+      with:
+        run: shadow
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+  staticcheck:
+    name: StaticCheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: check
+      uses: k8s-school/golang-github-actions@v1.1.2
+      with:
+        run: staticcheck
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+  sec:
+    name: Sec
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: check
+      uses: k8s-school/golang-github-actions@v1.1.2
+      with:
+        run: sec
+        token: ${{ secrets.GITHUB_TOKEN }}
+        flags: "-exclude=G104"
