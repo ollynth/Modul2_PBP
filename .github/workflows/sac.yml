@@ -15,7 +15,7 @@ jobs:
 
   errcheck:
     name: Errcheck
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
     - name: check
@@ -26,7 +26,7 @@ jobs:
 
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
     - name: check
@@ -37,7 +37,7 @@ jobs:
 
   shadow:
     name: Shadow
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
     - name: check
@@ -48,7 +48,7 @@ jobs:
 
   staticcheck:
     name: StaticCheck
-    runs-on: ubuntu-latest
+    runs-on: windeows-latest
     steps:
     - uses: actions/checkout@master
     - name: check
@@ -59,7 +59,7 @@ jobs:
 
   sec:
     name: Sec
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
     - name: check
