@@ -11,8 +11,7 @@ jobs:
       uses: golang.org/x/tools/cmd/goimports
       with:
         run: imports
-        token: ${{ secrets.GITHUB_TOKEN }}
-
+        token: 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
   errcheck:
     name: Errcheck
     runs-on: windows-latest
@@ -22,7 +21,7 @@ jobs:
       uses: github.com/kisielk/errcheck
       with:
         run: errcheck
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: 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
 
   lint:
     name: Lint
@@ -33,7 +32,7 @@ jobs:
       uses: golang.org/x/lint/golint
       with:
         run: lint
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: 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
 
   shadow:
     name: Shadow
@@ -44,7 +43,7 @@ jobs:
       uses: golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
       with:
         run: shadow
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: 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
 
   staticcheck:
     name: StaticCheck
@@ -55,7 +54,7 @@ jobs:
       uses: honnef.co/go/tools/cmd/staticcheck
       with:
         run: staticcheck
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: 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
 
   sec:
     name: Sec
@@ -66,5 +65,5 @@ jobs:
       uses: github.com/securego/gosec/cmd/gosec
       with:
         run: sec
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: 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
         flags: "-exclude=G104"
